@@ -1,0 +1,5 @@
+rootProject.name = "demo"
+include ':app'
+include ':xposed_compat'
+include ':annotation'
+include ':sandhook'

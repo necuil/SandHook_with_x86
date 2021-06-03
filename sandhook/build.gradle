@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', "x86"
+        }
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+
+    api project(':annotation')
+}
